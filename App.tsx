@@ -3,6 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import {
   Store,
@@ -10,14 +12,20 @@ import {
 import {
   Provider,
 } from 'react-redux';
-import reducers from './reducers';
 import {
   NativeRouter,
   Link,
 } from 'react-router-native';
 import Routes from './routes';
 
-const store = Store(reducers);
+import {
+  Navigation,
+} from './Modules';
+
+import reducers from './reducers';
+import sagas from './sagas';
+
+const store = Store(reducers, {}, sagas);
 
 export default class App extends React.Component<{}> {
   render() {
@@ -25,8 +33,10 @@ export default class App extends React.Component<{}> {
       <Provider store={store}>
         <NativeRouter>
           <View style={styles.container}>
-            <Link to='/example'><Text>helo</Text></Link>
-            <Routes/>
+            <ScrollView style={styles.scroll}>
+              <Navigation/>
+              <Routes/>
+            </ScrollView>
           </View>
         </NativeRouter>
       </Provider>
@@ -37,8 +47,12 @@ export default class App extends React.Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#cccccc',
+    alignItems: 'stretch',
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+  },
+  scroll: {
+    flex: 10,
   },
 });

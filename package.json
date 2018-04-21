@@ -3,20 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-native-scripts-ts": "1.13.0",
     "@types/jest": "^22.2.2",
     "@types/react": "^16.1.0",
     "@types/react-native": "^0.52.21",
     "@types/react-test-renderer": "^16.0.0",
-    "ts-jest": "^22.4.2",
     "jest-expo": "26.0.0",
+    "prettier": "^1.12.1",
+    "react-native-scripts-ts": "1.13.0",
     "react-native-typescript-transformer": "^1.2.3",
     "react-test-renderer": "16.3.0-alpha.1",
+    "ts-jest": "^22.4.2",
     "tslib": "^1.9.0",
     "typescript": "^2.8.1"
   },
   "main": "./node_modules/react-native-scripts-ts/build/bin/crna-entry.js",
   "scripts": {
+    "format": "prettier --write \"**/*.tsx\"",
     "start": "react-native-scripts-ts start",
     "eject": "react-native-scripts-ts eject",
     "android": "react-native-scripts-ts android",
@@ -49,6 +51,11 @@
   "dependencies": {
     "expo": "^26.0.0",
     "react": "16.3.0-alpha.1",
-    "react-native": "0.54.0"
+    "react-native": "0.54.0",
+    "react-redux": "^5.0.7",
+    "react-router-native": "^4.2.0",
+    "react-router-redux": "^4.0.8",
+    "redux-saga": "^0.16.0",
+    "redux-thunk": "^2.2.0"
   }
 }

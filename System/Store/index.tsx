@@ -6,13 +6,16 @@ import {
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import {
-	routerMiddleware,
-} from 'react-router-redux';
+	createReactNavigationReduxMiddleware,
+} from 'react-navigation-redux-helpers';
 
 export default (reducers: object, initialState: object = {}, sagas: Array = []) => {
 	return createStore(reducers, initialState, compose(applyMiddleware(
 		createSagaMiddleware(),
 		thunk,
-		routerMiddleware,
+		createReactNavigationReduxMiddleware(
+			"root",
+			state => state.nav,
+		),
 	)));
 }

@@ -1,28 +1,7 @@
-import React from 'react';
-import {
-	View,
-	Text,
-	StyleSheet,
-} from 'react-native';
-import {
-	Link,
-} from 'react-router-native';
+import Nav from './Nav';
+import reducer from './reducer';
 
-export default () => (
-	<View style={styles.navigation}>
-		<Text style={styles.title}>Are you in for dinner</Text>
-	</View>
-);
-
-const styles = StyleSheet.create({
-	navigation: {
-		backgroundColor: '#FF0000',
-		padding: 10,
-		paddingTop: 30,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	title: {
-		color: '#FFF',
-	}
-});
+export default Nav;
+export {
+	reducer,
+};

@@ -11,38 +11,51 @@ import {
 } from './System';
 import {
   Provider,
+  connect,
 } from 'react-redux';
 import {
-  NativeRouter,
-  Link,
-} from 'react-router-native';
+  combineReducers,
+} from 'redux';
+import {
+  createReduxBoundAddListener,
+} from 'react-navigation-redux-helpers';
 import Routes from './routes';
+import {
+  StackNavigator,
+  addNavigationHelpers,
+} from 'react-navigation';
 
 import {
   Navigation,
 } from './Modules';
 
-import reducers from './reducers';
+import AppReducers from './reducers';
 import sagas from './sagas';
 
-const store = Store(reducers, {}, sagas);
+const AppNavigator = StackNavigator(Routes);
 
-export default class App extends React.Component<{}> {
-  render() {
-    return (
-      <Provider store={store}>
-        <NativeRouter>
-          <View style={styles.container}>
-            <ScrollView style={styles.scroll}>
-              <Navigation/>
-              <Routes/>
-            </ScrollView>
-          </View>
-        </NativeRouter>
-      </Provider>
-    );
-  }
-}
+const addListener = createReduxBoundAddListener("root");
+
+const App = () => (
+  <AppNavigator navigation={addNavigationHelpers({
+    dispatch: this.props.dispatch,
+    state: this.props.nav,
+    addListener,
+  })} />
+);
+
+const mapStateToProps = (state) => ({
+  nav: state.nav
+});
+
+const AppWithNavigationState = connect(mapStateToProps)(App);
+
+const navigationReducer = Navigation.reducer(AppNavigator);
+
+const store = Store(combineReducers({
+  ...AppReducers,
+  navigationReducer,
+}), {}, sagas);
 
 const styles = StyleSheet.create({
   container: {
@@ -56,3 +69,13 @@ const styles = StyleSheet.create({
     flex: 10,
   },
 });
+
+export default class Root extends React.Component<{}> {
+  render() {
+    return (
+      <Provider store={store}>
+        <AppWithNavigationState />
+      </Provider>
+    );
+  }
+}

@@ -2,9 +2,6 @@ import * as React from 'react';
 import {
   StyleSheet,
   Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
 } from 'react-native';
 import {
   Store,
@@ -34,6 +31,17 @@ import sagas from './sagas';
 
 const AppNavigator = StackNavigator(Routes);
 
+const navigationReducer = Navigation.reducer(AppNavigator);
+
+console.log('navigation', navigationReducer);
+
+const store = Store(combineReducers({
+  ...AppReducers,
+  navigationReducer,
+}), {}, sagas);
+
+console.log('store', store);
+
 const addListener = createReduxBoundAddListener("root");
 
 const App = () => (
@@ -49,13 +57,6 @@ const mapStateToProps = (state) => ({
 });
 
 const AppWithNavigationState = connect(mapStateToProps)(App);
-
-const navigationReducer = Navigation.reducer(AppNavigator);
-
-const store = Store(combineReducers({
-  ...AppReducers,
-  navigationReducer,
-}), {}, sagas);
 
 const styles = StyleSheet.create({
   container: {
@@ -74,6 +75,7 @@ export default class Root extends React.Component<{}> {
   render() {
     return (
       <Provider store={store}>
+        <Text>Hi</Text>
         <AppWithNavigationState />
       </Provider>
     );

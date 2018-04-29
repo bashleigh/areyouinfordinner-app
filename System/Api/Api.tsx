@@ -11,10 +11,12 @@ export default async (options: Options) => {
 
 	//TODO add live path
 
+	console.log('options', options);
+
 	let response = await fetch(new Request(
 		((__DEV__) ? 'localhost:3000' : '') + options.path,
 		{
-			headers: new Headers(options.headers),
+			//headers: new Headers(options.headers),
 			method: options.method,
 		//TODO add body if there is a body to add
 		}

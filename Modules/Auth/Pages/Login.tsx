@@ -15,7 +15,7 @@ import config from './../config';
 @connect(
 	state => (state),
 	dispatch => ({
-		login: (email, password) => displatch({
+		login: () => displatch({
 			type: config.actions.login.loginRequest,
 		}),
 	}),
@@ -27,7 +27,7 @@ export default class extends React.Component<{}> {
 
 	render = () => (
 		<View>
-			<Form />
+			<Form handleSubmit={this.onSubmit}/>
 			<TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
 				<Text>Register</Text>
 			</TouchableOpacity>
@@ -35,9 +35,11 @@ export default class extends React.Component<{}> {
 	);
 
 	onSubmit = (values) => {
+
+		this.props.navigation.dispatch({
+			type: config.actions.login.loginRequest,
+		});
 		console.log('values', values);
-
-
 
 	}
 };

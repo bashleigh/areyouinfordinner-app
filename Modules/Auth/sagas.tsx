@@ -22,10 +22,12 @@ function* login() {
 
 		const params = yield effects.select((state) => state.form.login);
 
-		const response = yield effects.call(Api({
+		console.log('params', params);
+
+		const response = yield effects.call(Api, {
 			...config.api.login,
 			body: params,
-		}));
+		});
 
 		console.log('response', response);
 

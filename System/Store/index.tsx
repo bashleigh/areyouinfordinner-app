@@ -21,9 +21,9 @@ export default (reducers: object, initialState: object = {}, sagas: Array = []) 
 		),
 	)));
 
-	// sagas.forEach((saga) => {
-	// 	reduxSagaMiddleware.run(saga);
-	// });
+	sagas.forEach((saga) => {
+		reduxSagaMiddleware.run(saga);
+	});
 
 	return store;
 }

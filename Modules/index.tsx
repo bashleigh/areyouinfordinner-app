@@ -1,5 +1,5 @@
 import * as Auth from './Auth';
-import Navigation from './Navigation';
+import Navigation from './Navigator';
 
 export {
 	Auth,

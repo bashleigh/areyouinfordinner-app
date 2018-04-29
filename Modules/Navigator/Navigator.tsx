@@ -3,6 +3,9 @@ import {
 	StackNavigator,
 	SwitchNavigator,
 } from 'react-navigation';
+import {
+	connect,
+} from 'react-redux';
 
 export default(
 	authStack: object,

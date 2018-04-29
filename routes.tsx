@@ -2,13 +2,24 @@ import React from 'react';
 import {
 	Auth,
 } from './Modules';
+import {
+	example,
+} from './Components';
 
 export default {
-	Login: {
-		screen: Auth.Pages.Login,
+	auth: {
+		Login: {
+			screen: Auth.Pages.Login,
+		},
+		Register: {
+			screen: Auth.Pages.Register,
+		},
+		initialRouteName: 'Login',
 	},
-	Register: {
-		screen: Auth.Pages.Register,
+	app: {
+		example: {
+			screen: example,
+		},
+		initialRouteName: 'Home',
 	},
-	initialRouteName: 'Login',
 };

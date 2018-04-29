@@ -1,31 +1,30 @@
 import React from 'react';
 import {
   View,
-  ScrollView,
-  Text,
   StyleSheet,
 } from 'react-native';
 import {
-  example,
-  Header,
-} from './Components';
+  Navigator,
+  reducer as navReducer,
+} from './Modules/Navigator';
 import {
-  Auth,
-  Navigation,
-} from './Modules';
-
-class Home extends React.Component {
-  static navigationOptions: {
-    drawerLabel: 'home',
-  };
-
-  render = () => (
-    <View>
-      <Header navigation={this.props.navigation}/>
-      <Text>Test</Text>
-    </View>
-  );
-}
+  Provider,
+  connect,
+} from 'react-redux';
+import {
+  combineReducers,
+} from 'redux';
+import routes from './routes';
+import {
+  Store,
+} from './System';
+import rootReducers from './reducers';
+import {
+  createReduxBoundAddListener,
+} from 'react-navigation-redux-helpers';
+import {
+  addNavigationHelpers
+} from 'react-navigation';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,33 +40,39 @@ const styles = StyleSheet.create({
   },
 });
 
-const Nav = Navigation(
-  {
-    Login: {
-      screen: Auth.Pages.Login,
-    },
-    Register: {
-      screen: Auth.Pages.Register,
-    },
-  },
-    {
-    initialRouteName: 'Login',
-  },
-    {
-      Home: {
-        screen: Home,
-      },
-      example: {
-        screen: example,
-      },
-      initalRouteName: 'Home',
-    },
+const Nav = Navigator(
+  routes.auth,
+  routes.app
 );
 
+const nav = navReducer(Nav);
+
+const reducers = combineReducers({
+  nav: nav,
+  ...rootReducers,
+});
+
+const store = Store(reducers, {});
+
+const addListener = createReduxBoundAddListener("root");
+
+@connect(
+  (state) => ({
+    nav: state.nav,
+  })
+)
+class App extends React.Component<{}> {
+  render = () => (
+    <Nav navigation={addNavigationHelpers({
+      dispatch: this.props.dispatch,
+      state: this.props.nav,
+      addListener,
+    })}/>
+  );
+}
+
 export default () => (
-  <View style={styles.container}>
-    <View style={styles.main}>
-      <Nav/>
-    </View>
-  </View>
+  <Provider store={store}>
+    <App/>
+  </Provider>
 );

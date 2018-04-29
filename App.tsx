@@ -26,6 +26,7 @@ import {
 import {
   addNavigationHelpers
 } from 'react-navigation';
+import codePush from 'react-native-code-push';
 
 const styles = StyleSheet.create({
   container: {
@@ -72,6 +73,7 @@ class App extends React.Component<{}> {
   );
 }
 
+@codePush
 export default () => (
   <Provider store={store}>
     <App/>

@@ -1,16 +1,18 @@
 import React from 'react';
 import {
   View,
+  ScrollView,
   Text,
-  Button,
   StyleSheet,
 } from 'react-native';
 import {
-  DrawerNavigator,
-} from 'react-navigation';
-import {
   example,
+  Header,
 } from './Components';
+import {
+  Auth,
+  Navigation,
+} from './Modules';
 
 class Home extends React.Component {
   static navigationOptions: {
@@ -19,6 +21,7 @@ class Home extends React.Component {
 
   render = () => (
     <View>
+      <Header navigation={this.props.navigation}/>
       <Text>Test</Text>
     </View>
   );
@@ -32,34 +35,39 @@ const styles = StyleSheet.create({
   main: {
     flex: 12,
   },
-  header: {
-    flex: 1,
-    backgroundColor: '#FF0000',
-    paddingTop: 30,
-  },
   icon: {
     width: 24,
     height: 24,
   },
 });
 
-const App = DrawerNavigator({
-  Home: {
-    screen: Home,
+const Nav = Navigation(
+  {
+    Login: {
+      screen: Auth.Pages.Login,
+    },
+    Register: {
+      screen: Auth.Pages.Register,
+    },
   },
-  example: {
-    screen: example,
+    {
+    initialRouteName: 'Login',
   },
-  //initialRouteName: 'Home',
-});
+    {
+      Home: {
+        screen: Home,
+      },
+      example: {
+        screen: example,
+      },
+      initalRouteName: 'Home',
+    },
+);
 
 export default () => (
   <View style={styles.container}>
-    <View style={styles.header}>
-      <Text>Header</Text>
-    </View>
     <View style={styles.main}>
-      <App/>
+      <Nav/>
     </View>
   </View>
 );

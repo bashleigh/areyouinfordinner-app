@@ -10,6 +10,6 @@ import {
 export default () => (
 	<View>
 		<Text>Login</Text>
-		<Form/>
+		{/*<Form/>*/}
 	</View>
 );

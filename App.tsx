@@ -53,6 +53,8 @@ const reducers = combineReducers({
   ...rootReducers,
 });
 
+console.log('dev', __DEV__);
+
 const store = Store(reducers, {}, sagas);
 
 const addListener = createReduxBoundAddListener("root");

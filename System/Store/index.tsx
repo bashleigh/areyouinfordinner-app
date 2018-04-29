@@ -9,10 +9,9 @@ import {
 	createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
 
+const reduxSagaMiddleware = createSagaMiddleware();
+
 export default (reducers: object, initialState: object = {}, sagas: Array = []) => {
-
-	const reduxSagaMiddleware = createSagaMiddleware();
-
 	const store = createStore(reducers, initialState, compose(applyMiddleware(
 		reduxSagaMiddleware,
 		thunk,
@@ -22,9 +21,9 @@ export default (reducers: object, initialState: object = {}, sagas: Array = []) 
 		),
 	)));
 
-	sagas.forEach((saga) => {
-		reduxSagaMiddleware.run(saga);
-	});
+	// sagas.forEach((saga) => {
+	// 	reduxSagaMiddleware.run(saga);
+	// });
 
 	return store;
 }

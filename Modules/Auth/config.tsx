@@ -6,7 +6,7 @@ export default {
 			isLoading: false,
 			form: {
 				email: null,
-				firrstname: null,
+				firstname: null,
 				lastname: null,
 				password: null,
 				confirmPassword: null,
@@ -16,6 +16,7 @@ export default {
 			isLoading: false,
 			form: {
 				email: null,
+				password: null,
 			},
 		},
 	},
@@ -31,6 +32,18 @@ export default {
 		me: {
 			method: 'get',
 			path: '/auth/me',
+		},
+	},
+	actions: {
+		login: {
+			loading: 'auth-login-loading',
+			loginRequest: 'auth-login-request',
+			errors: 'auth-login-errors',
+		},
+		register: {
+			loading: 'auth-register-loading',
+			registerRequest: 'auth-register-request',
+			errors: 'auth-register-errors',
 		},
 	},
 };

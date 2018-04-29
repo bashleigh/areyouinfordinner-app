@@ -7,10 +7,10 @@ import {
 	TouchableOpacity,
 	Text,
 } from 'react-native';
-import {
-	Field,
-	reduxForm,
-} from 'redux-form';
+ import {
+ 	Field,
+ 	reduxForm,
+ } from 'redux-form';
 
 const form = (props) => (
 	<View>
@@ -32,5 +32,5 @@ const form = (props) => (
 );
 
 export default reduxForm({
-	form: 'login',
+	form: 'register',
 })(form);

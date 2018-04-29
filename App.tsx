@@ -19,6 +19,7 @@ import {
   Store,
 } from './System';
 import rootReducers from './reducers';
+import sagas from './sagas';
 import {
   createReduxBoundAddListener,
 } from 'react-navigation-redux-helpers';
@@ -52,7 +53,7 @@ const reducers = combineReducers({
   ...rootReducers,
 });
 
-const store = Store(reducers, {});
+const store = Store(reducers, {}, sagas);
 
 const addListener = createReduxBoundAddListener("root");
 

@@ -10,12 +10,21 @@ import {
 } from 'react-navigation-redux-helpers';
 
 export default (reducers: object, initialState: object = {}, sagas: Array = []) => {
-	return createStore(reducers, initialState, compose(applyMiddleware(
-		createSagaMiddleware(),
+
+	const reduxSagaMiddleware = createSagaMiddleware();
+
+	const store = createStore(reducers, initialState, compose(applyMiddleware(
+		reduxSagaMiddleware,
 		thunk,
 		createReactNavigationReduxMiddleware(
 			"root",
 			state => state.nav,
 		),
 	)));
+
+	sagas.forEach((saga) => {
+		reduxSagaMiddleware.run(saga);
+	});
+
+	return store;
 }

@@ -8,6 +8,7 @@ import config from './config';
 export default function* sagas() {
 	yield effects.all([
 		effects.fork(login),
+		effects.fork(register),
 	]);
 }
 
@@ -35,10 +36,14 @@ function* login() {
 				JWT: response.body,
 			});
 
-			console.log('nav', root);
 			root.navigation.navigate('check');
 
 		} else {
+
+			yield effects.put({
+				type: config.actions.login.errors,
+				errors: response.body.message.errors,
+			});
 
 			yield effects.put({
 				type: config.actions.login.errors,
@@ -84,6 +89,7 @@ function* me() {
 
 		} else {
 			console.log('Invalid login credentials');
+
 			yield effects.put({
 				type: config.actions.me.unauthenticated,
 			});
@@ -98,14 +104,42 @@ function* me() {
 
 function* register() {
 	while(true) {
-		yield effects.take(config.actions.register.registerRequest);
+		const root = yield effects.take(config.actions.register.registerRequest);
 
 		yield effects.put({
 			type: config.actions.register.loading,
 			loading: true,
 		});
 
-		//TODO register request here
+		const params = yield effects.select((state) => state.form.register.values);
+
+		const response = yield effects.call(Api, {
+			...config.api.register,
+			body: params,
+		});
+
+		console.log('response', response);
+
+		if (response.status === 201) {
+			console.log('registered successfully');
+
+			yield effects.put({
+				type: config.actions.login.setJWT,
+				JWT: response.body.token,
+			});
+
+			root.navigation.navigate('check');
+
+		} else {
+
+			yield effects.put({
+				type: config.actions.register.errors,
+				errors: response.body.message.errors,
+				title: response.body.message.message,
+			});
+
+			console.log('registered failed');
+		}
 
 		yield effects.put({
 			type: config.actions.register.loading,

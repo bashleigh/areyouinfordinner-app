@@ -19,6 +19,15 @@ export default (state = config.state, action = {}) => {
 				},
 			};
 			break;
+		case config.actions.register.loading:
+			return {
+				...state,
+				register: {
+					...state.login,
+					loading: action.loading,
+				},
+			};
+			break;
 		case config.actions.me.set:
 			return {
 				...state,
@@ -34,6 +43,24 @@ export default (state = config.state, action = {}) => {
 				me: {
 					...state,
 					loading: action.loading,
+				},
+			};
+			break;
+		case config.actions.register.errors:
+			return {
+				...state,
+				register: {
+					...state.register,
+					errors: action,
+				},
+			};
+			break;
+		case config.actions.login.errors:
+			return {
+				...state,
+				login: {
+					...state.login,
+					errors: action,
 				},
 			};
 			break;

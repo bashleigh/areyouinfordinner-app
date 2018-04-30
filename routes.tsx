@@ -16,10 +16,14 @@ export default {
 		},
 		initialRouteName: 'Login',
 	},
+	authOptions: {
+	},
 	app: {
 		example: {
 			screen: example,
 		},
+	},
+	appOptions: {
 		initialRouteName: 'Home',
 	},
 	switchStack: {

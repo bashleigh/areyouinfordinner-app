@@ -10,17 +10,18 @@ import {
 export default(
 	authStack: object,
 	appDrawer: object,
+	switchStack: object = {},
 	authStackOption: object = {},
-	appDrawerOptions: object = {}
+	appDrawerOptions: object = {},
+	switchStackOptions: object = {}
 ) => {
 	const AuthStack = StackNavigator(authStack, authStackOption);
 
 	const AppDrawer = DrawerNavigator(appDrawer, appDrawerOptions);
 
 	return SwitchNavigator({
+		...switchStack,
 		App: AppDrawer,
 		Auth: AuthStack,
-	}, {
-		initialRouteName: 'Auth',
-	});
+	}, switchStackOptions);
 };

@@ -20,21 +20,27 @@ function* login() {
 			loading: true,
 		});
 
-		const params = yield effects.select((state) => state.form.login);
-
-		console.log('params', params);
+		const params = yield effects.select((state) => state.form.login.values);
 
 		const response = yield effects.call(Api, {
 			...config.api.login,
 			body: params,
 		});
 
-		console.log('response', response);
-
-		if (response.status === 200) {
+		if (response.status === 201) {
 			console.log('logged in');
+
+			yield effects.put({
+				type: config.actions.login.setJWT,
+				JWT: response.body,
+			});
+
 		} else {
-			console.log('login not successful');
+
+			yield effects.put({
+				type: config.actions.login.errors,
+				errors: response.errors,
+			});
 		}
 
 		//TODO stuff to make login work
@@ -48,16 +54,37 @@ function* login() {
 
 function* me() {
 	while(true) {
-		yield effects.take(config.actions.me.request);
+		yield effects.take(config.actions.me.get);
 
 		yield effects.put({
 			type: config.actions.me.loading,
 			loading: true,
 		});
 
-		//TODO stuff to requests login
-		//TODO if no jwt then redirect to login
-		//TODO else (request me) ? update jwt and me : redirect to login
+		const params = yield effects.select((state) => state.auth.JWT);
+
+		const response = yield effects.call(Api, {
+			...config.api.me,
+			headers: {
+				...config.api.me.headers,
+				'authentication': `Bearer ${params.jwt}`,
+			},
+		});
+
+		if (response.status === 201) {
+			console.log('Valid login credentials ');
+
+			yield effects.put({
+				type: config.actions.me.set,
+				me: response.body,
+			});
+
+		} else {
+			console.log('Invalid login credentials');
+			yield effects.put({
+				type: config.actions.me.unauthenticated,
+			});
+		}
 
 		yield effects.put({
 			type: config.actions.me.loading,
@@ -81,5 +108,13 @@ function* register() {
 			type: config.actions.register.loading,
 			loading: false,
 		});
+	}
+}
+
+//TODO singular function to fire off unauthenticated action
+// basically wipe jwt and me
+function* unauthenticated() {
+	while(true) {
+
 	}
 }

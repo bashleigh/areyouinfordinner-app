@@ -1,5 +1,8 @@
 import Options from './Options';
 
+//TODO add live url
+const url = '';
+
 export default async (options: Options) => {
 	//TODO IF body and content type == json options.body = JSON.stringify(options.body);
 
@@ -7,27 +10,20 @@ export default async (options: Options) => {
 		options.body = JSON.stringify(options.body);
 	}
 
-	//TODO add a try catch for errors
+	//TODO add a try catch for errors if needed
 
-	//TODO add live path
-
-	console.log('options', options);
-
-	let response = await fetch(new Request(
-		((__DEV__) ? 'localhost:3000' : '') + options.path,
+	const request = new Request(
+		((__DEV__) ? 'http://localhost:3000' : url) + options.path,
 		{
-			//headers: new Headers(options.headers),
+			headers: new Headers(options.headers),
 			method: options.method,
-		//TODO add body if there is a body to add
+			body: options.body,
 		}
-	));
+	);
 
-	console.log('response', response);
+	let response = await fetch(request);
 
-	if (response.hasOwnProperty('body')) {
-		response.body = await response.json();
-	}
+	response.body = await response.json();
 
 	return response;
-
 };

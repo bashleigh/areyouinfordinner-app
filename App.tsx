@@ -44,7 +44,11 @@ const styles = StyleSheet.create({
 
 const Nav = Navigator(
   routes.auth,
-  routes.app
+  routes.app,
+  routes.switchStack,
+  {},
+  {},
+  routes.switchOptions,
 );
 
 const nav = navReducer(Nav);

@@ -22,4 +22,10 @@ export default {
 		},
 		initialRouteName: 'Home',
 	},
+	switchStack: {
+		check: Auth.Pages.Check,
+	},
+	switchOptions: {
+		initialRouteName: 'check',
+	},
 };

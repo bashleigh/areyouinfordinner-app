@@ -14,11 +14,6 @@ import config from './../config';
 
 @connect(
 	state => (state),
-	dispatch => ({
-		login: () => displatch({
-			type: config.actions.login.loginRequest,
-		}),
-	}),
 )
 export default class extends React.Component<{}> {
 	static navigationOptions = {
@@ -27,6 +22,7 @@ export default class extends React.Component<{}> {
 
 	render = () => (
 		<View>
+			<Text>{this.props.auth.login.loading ? 'loading' : 'not loading'}</Text>
 			<Form handleSubmit={this.onSubmit}/>
 			<TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
 				<Text>Register</Text>
@@ -39,7 +35,7 @@ export default class extends React.Component<{}> {
 		this.props.navigation.dispatch({
 			type: config.actions.login.loginRequest,
 		});
-		console.log('values', values);
+		console.log('state', this.props);
 
 	}
 };

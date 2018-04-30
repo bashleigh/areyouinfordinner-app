@@ -23,3 +23,4 @@ You will also be presented with a QR code to scan with an expo app on the same n
 
 Alternatively you can run `yarn ios` to start an iphone emulator or `yarn android` to start an android emulator. 
 
+> Make sure that when running in development mode that the areyouinfordinner API is running on port 3000.

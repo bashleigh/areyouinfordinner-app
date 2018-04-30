@@ -14,20 +14,8 @@ import {
 
 const form = (props) => (
 	<View>
-		<Field
-			name='email'
-			placeholder='email@email.com'
-			component={Form.Input}
-		/>
-		<Field
-			name='password'
-			placeholder='password'
-			secureTextEntry={true}
-			component={Form.Input}
-		/>
-		<TouchableOpacity onPress={props.handleSubmit}>
-			<Text>Login</Text>
-		</TouchableOpacity>
+
+
 	</View>
 );
 

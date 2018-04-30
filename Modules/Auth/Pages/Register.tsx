@@ -15,6 +15,7 @@ export default class extends React.Component<{}> {
 	render = () => (
 		<View>
 			<Text>Register</Text>
+			<Form/>
 		</View>
 	);
 };

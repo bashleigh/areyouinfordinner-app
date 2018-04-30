@@ -15,18 +15,13 @@ import {
 export default class extends React.Component<{}> {
 	constructor(props) {
 		super(props);
-		console.log('hello?', props);
 		this._bootstrapAsync();
 	}
 
 	_bootstrapAsync = async () => {
-		console.log('hello 2?');
-
 		this.props.navigation.dispatch({
 			type: config.actions.me.get,
 		});
-
-		console.log('jwt', this.props.auth.JWT);
 
 		this.props.navigation.navigate(this.props.auth.JWT !== null ? 'App' : 'Auth');
 	};

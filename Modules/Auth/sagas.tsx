@@ -13,7 +13,7 @@ export default function* sagas() {
 
 function* login() {
 	while(true) {
-		yield effects.take(config.actions.login.loginRequest);
+		const root = yield effects.take(config.actions.login.loginRequest);
 
 		yield effects.put({
 			type: config.actions.login.loading,
@@ -34,6 +34,9 @@ function* login() {
 				type: config.actions.login.setJWT,
 				JWT: response.body,
 			});
+
+			console.log('nav', root);
+			root.navigation.navigate('check');
 
 		} else {
 

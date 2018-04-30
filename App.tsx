@@ -58,6 +58,8 @@ const reducers = combineReducers({
   ...rootReducers,
 });
 
+//TODO add redux persist
+
 const store = Store(reducers, {}, sagas);
 
 const addListener = createReduxBoundAddListener("root");

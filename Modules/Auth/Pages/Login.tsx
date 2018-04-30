@@ -32,10 +32,12 @@ export default class extends React.Component<{}> {
 
 	onSubmit = (values) => {
 
+		//TODO form validation etc
+
 		this.props.navigation.dispatch({
 			type: config.actions.login.loginRequest,
+			navigation: this.props.navigation,
 		});
-		console.log('state', this.props);
 
 	}
 };

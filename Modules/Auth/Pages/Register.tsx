@@ -40,7 +40,7 @@ export default class extends React.Component<{}> {
 
 	resolveErrors = () => {
 
-		//TODO get errors working 
+		//TODO get errors working
 		if (this.props.auth.register.errors.hasOwnProperty('title')) {
 			console.log(this.props.auth.register.errors.title);
 			return (

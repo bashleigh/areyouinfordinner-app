@@ -1,3 +1,5 @@
+![burger](https://github.com/bashleigh/areyouinfordinner-app/blob/master/PixelArt.png?raw=true)
+
 Are you in for dinner app
 ===
 

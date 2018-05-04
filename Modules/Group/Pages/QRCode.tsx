@@ -18,7 +18,7 @@ export default class extends React.Component <{}> {
         <View>
             <Text>{selectedGroup}</Text>
 
-            {/*TODO list all responses for current day */}
+            {/*TODO show the QR code */}
 
         </View>
     );

@@ -1,7 +1,7 @@
 export default {
 	state: {
 		currentPage: 0,
-		groups: [],
+		groups: {},
 	},
 	api: {
 		groups: {

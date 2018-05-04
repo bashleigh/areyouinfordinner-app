@@ -7,12 +7,11 @@ import {
 } from 'react-redux';
 
 
-
 @connect()
 export default class extends React.Component <{}> {
 	render = () => (
 		<View>
-
+			{/*TODO Add QR scanner*/}
 		</View>
 	);
 }

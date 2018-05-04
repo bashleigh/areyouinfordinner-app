@@ -87,13 +87,67 @@ function* update() {
 
 		const response = yield effects.call(Api, {
 			...config.api.groups.update,
-			path: config.api.groups.update.path.replace('{group_id}', params.id),
+			path: config.api.groups.update.path.replace('{group_code}', params.code),
 		});
 
 		if (response.status === 202) {
 			//TODO update groups to array
 		} else {
 			//TODO log errors and display
+		}
+
+		yield effects.put({
+			type: config.actions.group.loading,
+			loading: false,
+		});
+	}
+}
+
+function* destroy() {
+	while(true) {
+		const root = yield effects.take(config.actions.group.destroy);
+
+		yield effects.put({
+			type: config.actions.group.loading,
+			loading: true,
+		});
+
+		const response = yield effects.call(Api, {
+			...config.api.groups.destroy,
+			path: config.api.groups.destroy.path.replace('{group_code}', root.code),
+		});
+
+		if (response.status === 200) {
+			//TODO remove from groups array
+		} else {
+			//TODO log errors
+		}
+
+		yield effects.put({
+			type: config.actions.group.loading,
+			loading: false,
+		});
+	}
+}
+
+function* show() {
+	while(true) {
+		const root = yield effects.take(config.actions.group.show);
+
+		yield effects.put({
+			type: config.actions.group.loading,
+			loading: true,
+		});
+
+		const response = yield effects.call(Api, {
+			...config.api.groups.show,
+			path: config.api.groups.show.path.replace('{group_code}', root.code),
+		});
+
+		if (response.status === 200) {
+			//TODO update in group
+		} else {
+			//TODO log errors
 		}
 
 		yield effects.put({

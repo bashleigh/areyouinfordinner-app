@@ -10,7 +10,9 @@ import config from './../config';
 import {
     Group as Form,
 } from './../Form';
-
+import {
+    Header,
+} from './../../../Components';
 
 @connect(
     (state) => state,
@@ -21,6 +23,7 @@ export default class extends React.Component <{}> {
     };
     render = () => (
         <View>
+            <Header navigation={this.props.navigation}/>
             <Text>Create new group</Text>
             <Form handleSubmit={this.onSubmit}/>
         </View>

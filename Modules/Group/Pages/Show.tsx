@@ -7,6 +7,9 @@ import {
 import {
     connect,
 } from 'react-redux';
+import {
+    Header,
+} from './../../../Components';
 
 @connect()
 export default class extends React.Component <{}> {
@@ -17,6 +20,7 @@ export default class extends React.Component <{}> {
 
     render = () => (
         <View>
+            <Header navigation={this.props.navigation}/>
             <Text>{selectedGroup}</Text>
 
             <TouchableOpacity onPress={() => this.props.navigation.navigate('group-QRcode')}>

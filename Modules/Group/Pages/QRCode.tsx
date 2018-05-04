@@ -6,6 +6,9 @@ import {
 import {
     connect,
 } from 'react-redux';
+import {
+    Header,
+} from './../../../Components';
 
 @connect()
 export default class extends React.Component <{}> {
@@ -16,6 +19,7 @@ export default class extends React.Component <{}> {
 
     render = () => (
         <View>
+            <Header navigation={this.props.navigation}/>
             <Text>{selectedGroup}</Text>
 
             {/*TODO show the QR code */}

@@ -10,7 +10,9 @@ import config from './../config';
 import {
     Group as Form,
 } from './../Form';
-
+import {
+    Header,
+} from './../../../Components';
 
 @connect()
 export default class extends React.Component <{}> {
@@ -21,6 +23,7 @@ export default class extends React.Component <{}> {
 
     render = () => (
         <View>
+            <Header navigation={this.props.navigation}/>
             <Text>Update {selectedGroup} group</Text>
             <Form initialValues={this.props.group.groups[selectedGroup]} handleSubmit={this.onSubmit}/>
         </View>

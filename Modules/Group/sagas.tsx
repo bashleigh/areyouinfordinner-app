@@ -57,6 +57,7 @@ function* create() {
 
 		const response = yield effects.call(Api, {
 			...config.api.groups.store,
+			body: params,
 		});
 
 		console.log('response', response);
@@ -88,6 +89,7 @@ function* update() {
 		const response = yield effects.call(Api, {
 			...config.api.groups.update,
 			path: config.api.groups.update.path.replace('{group_code}', params.code),
+			body: params,
 		});
 
 		if (response.status === 202) {

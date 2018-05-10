@@ -58,7 +58,7 @@
     "react-navigation": "^1.5.11",
     "react-navigation-redux-helpers": "^1.0.5",
     "react-redux": "^5.0.7",
-    "redux-form": "^7.3.0",
+    "redux-form": "^7.1.2",
     "redux-saga": "^0.16.0",
     "redux-thunk": "^2.2.0"
   }

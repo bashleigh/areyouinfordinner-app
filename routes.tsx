@@ -1,7 +1,7 @@
 import React from 'react';
 import {
 	Auth,
-	Group,
+	//Group,
 	//Responses,
 } from './Modules';
 import {

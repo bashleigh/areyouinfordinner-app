@@ -23,7 +23,7 @@ export default class extends React.Component<{}> {
 	render = () => (
 		<View>
 			<Text>{this.props.auth.login.loading ? 'loading' : 'not loading'}</Text>
-			<Form handleSubmit={this.onSubmit}/>
+			<Form onSubmit={this.onSubmit}/>
 			<TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
 				<Text>Register</Text>
 			</TouchableOpacity>
@@ -31,9 +31,6 @@ export default class extends React.Component<{}> {
 	);
 
 	onSubmit = (values) => {
-
-		//TODO form validation etc
-
 		this.props.navigation.dispatch({
 			type: config.actions.login.loginRequest,
 			navigation: this.props.navigation,

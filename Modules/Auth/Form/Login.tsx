@@ -3,7 +3,7 @@ import {
 	Form,
 } from './../../../Components';
 import {
-	View,
+	ScrollView,
 	TouchableOpacity,
 	Text,
 } from 'react-native';
@@ -12,23 +12,34 @@ import {
 	reduxForm,
 } from 'redux-form';
 
+const emailErrors = [
+	Form.Validation.email,
+	Form.Validation.required,
+];
+
+const passwordErrors = [
+	Form.Validation.required,
+];
+
 const form = (props) => (
-	<View>
+	<ScrollView keyboardShouldPersistTaps={'handled'}>
 		<Field
 			name='email'
 			placeholder='email@email.com'
 			component={Form.Input}
+			validate={emailErrors}
 		/>
 		<Field
 			name='password'
 			placeholder='password'
 			secureTextEntry={true}
 			component={Form.Input}
+			validate={passwordErrors}
 		/>
 		<TouchableOpacity onPress={props.handleSubmit}>
 			<Text>Login</Text>
 		</TouchableOpacity>
-	</View>
+	</ScrollView>
 );
 
 export default reduxForm({

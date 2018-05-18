@@ -11,21 +11,35 @@ import {
     Header,
 } from './../../../Components';
 
-@connect()
+@connect(
+  (state) => state,
+)
 export default class extends React.Component <{}> {
     static navigationOptions = {
         title: 'Show group',
     };
-    static selectedGroup = 'dunno yet';
 
     render = () => {
-      console.log('props', this.props);
+      const params = this.props.navigation.state.params;
+
+      if (!params.hasOwnProperty('id') || !this.props.group.groups.hasOwnProperty(params.id)) {
+        return (
+          <View>
+            <Text>Group not found!</Text>
+          </View>
+        );
+      }
+
+      const group = this.props.group.groups[params.id];
+
       return (
         <View>
           <Header navigation={this.props.navigation}/>
-          <Text>{this.selectedGroup}</Text>
+          <Text>{group.name}</Text>
 
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('groupQRcode')}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('groupQRcode', {
+            id: params.id,
+          })}>
             <Text>Show QR code</Text>
           </TouchableOpacity>
 

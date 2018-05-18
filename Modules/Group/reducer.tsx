@@ -11,7 +11,10 @@ export default (state = config.state, action = {}) => {
 		case config.actions.group.push:
 			return {
 				...state,
-				groups: state.groups[action.group.id] = action.group,
+				groups: {
+					...state.groups,
+					[action.group.id]: action.group,
+				},
 			};
 			break;
 		default:

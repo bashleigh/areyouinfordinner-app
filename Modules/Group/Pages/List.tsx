@@ -36,9 +36,9 @@ export default class extends React.Component<{}> {
 				{Object.keys(this.props.group.groups).map((id) => (
 					<View key={id}>
 						<Text>{this.props.group.groups[id].name}</Text>
-						<Text>{group.code}</Text>
+						<Text>{this.props.group.groups[id].code}</Text>
 						<TouchableOpacity onPress={() => this.props.navigation.navigate('groupShow', {
-							group: this.props.group.groups[id].id,
+							id: id,
 						})
 						}>
 							<Text>Show</Text>

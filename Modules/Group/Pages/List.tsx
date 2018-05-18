@@ -7,6 +7,10 @@ import {
 import {
 	connect,
 } from 'react-redux';
+import {
+	Header,
+} from './../../../Components';
+
 
 @connect(
 	(state) => state,
@@ -17,26 +21,31 @@ export default class extends React.Component<{}> {
 		title: 'Group',
 	};
 
-	render = () => (
-		<View>
-			<Text>Your Groups</Text>
+	render = () => {
+		console.log('state', this.props);
+		return (
+			<View>
+				<Header navigation={this.props.navigation}/>
+				<Text>Your Groups</Text>
 
-			<TouchableOpacity onPress={this.props.navigation.navigate('Group-create')}>
-				<Text>Create</Text>
-			</TouchableOpacity>
+				<TouchableOpacity onPress={() => this.props.navigation.navigate('groupCreate')}>
+					<Text>Create</Text>
+				</TouchableOpacity>
 
-			{this.props.groups.map((group, id) => (
-				<View key={group.id}>
-					<Text>{group.name}</Text>
-					<Text>{group.code}</Text>
-					<TouchableOpacity onPress={() => this.props.navigation.navigate('Group-show', {
-							group: group.id,
+				{/*TODO pagination*/}
+				{Object.keys(this.props.group.groups).map((id) => (
+					<View key={id}>
+						<Text>{this.props.group.groups[id].name}</Text>
+						<Text>{group.code}</Text>
+						<TouchableOpacity onPress={() => this.props.navigation.navigate('groupShow', {
+							group: this.props.group.groups[id].id,
 						})
-					}>
-						<Text>Show</Text>
-					</TouchableOpacity>
-				</View>
-			))}
-		</View>
-	);
+						}>
+							<Text>Show</Text>
+						</TouchableOpacity>
+					</View>
+				))}
+			</View>
+		);
+	};
 }

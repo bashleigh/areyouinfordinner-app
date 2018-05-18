@@ -1,7 +1,7 @@
 import React from 'react';
 import {
 	Auth,
-	//Group,
+	Group,
 	//Responses,
 } from './Modules';
 import {
@@ -23,6 +23,15 @@ export default {
 	app: {
 		example: {
 			screen: example,
+		},
+		group: {
+			screen: Group.Pages.List,
+		},
+		groupCreate: {
+			screen: Group.Pages.Create,
+		},
+		groupShow: {
+			screen: Group.Pages.Show,
 		},
 	},
 	appOptions: {

@@ -8,6 +8,12 @@ export default (state = config.state, action = {}) => {
 				loading: action.loading,
 			};
 			break;
+		case config.actions.group.push:
+			return {
+				...state,
+				groups: state.groups[action.group.id] = action.group,
+			};
+			break;
 		default:
 			return state;
 	}

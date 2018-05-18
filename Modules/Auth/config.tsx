@@ -71,4 +71,6 @@ export default {
 			unauthenticated: 'auth-me-unauthenticated',
 		},
 	},
+	unauthenticated: 'auth-deauth',
+	unauth: 'auth-unauth',
 };

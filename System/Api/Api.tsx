@@ -21,9 +21,13 @@ export default async (options: Options) => {
 		}
 	);
 
+	console.log('request', request);
+
 	let response = await fetch(request);
 
-	response.body = await response.json();
+	console.log('response', response);
+
+	if (response.ok) response.body = await response.json();
 
 	return response;
 };

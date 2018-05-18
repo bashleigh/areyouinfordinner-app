@@ -7,32 +7,36 @@ export default {
 		groups: {
 			index: {
 				method: 'get',
-				path: '/groups',
+				path: '/group',
 				headers: {
 					'Accept': 'application/json',
+					'Authorization': 'Bearer {token}',
 				},
 			},
 			show: {
 				method: 'get',
-				path: '/groups/{group_id}/',
+				path: '/group/{group_id}/',
 				headers: {
 					'Accept': 'application/json',
+					'Authorization': 'Bearer {token}',
 				},
 			},
 			store: {
 				method: 'post',
-				path: '/groups/',
+				path: '/group/',
 				headers: {
 					'Content-type': 'application/json',
 					'Accept': 'application/json',
+					'Authorization': 'Bearer {token}',
 				},
 			},
 			update: {
 				method: 'put',
-				path: '/groups/{group_id}/',
+				path: '/group/{group_id}/',
 				headers: {
 					'Content-Type': 'application/json',
 					'Accept': 'application/json',
+					'Authorization': 'Bearer {token}',
 				},
 			},
 		},
@@ -44,6 +48,8 @@ export default {
 			show: 'group-show',
 			index: 'group-index',
 			loading: 'group-loading',
+			push: 'group-push',
+			paginate: 'group-paginate',
 		},
 	},
 };

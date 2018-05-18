@@ -1,5 +1,6 @@
 import {
 	Auth,
+	Group,
 } from './Modules';
 import {
 	reducer as form,
@@ -8,4 +9,5 @@ import {
 export default {
 	auth: Auth.reducer,
 	form: form,
+	group: Group.reducer,
 };

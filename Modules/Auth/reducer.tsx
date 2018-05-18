@@ -47,11 +47,12 @@ export default (state = config.state, action = {}) => {
 			};
 			break;
 		case config.actions.register.errors:
+			console.log('action', action);
 			return {
 				...state,
 				register: {
 					...state.register,
-					errors: action,
+					errors: action.errors,
 				},
 			};
 			break;
@@ -61,6 +62,16 @@ export default (state = config.state, action = {}) => {
 				login: {
 					...state.login,
 					errors: action,
+				},
+			};
+			break;
+		case config.actions.unauth:
+			return {
+				...state,
+				JWT: null,
+				me: {
+					...state.me,
+					data: false,
 				},
 			};
 			break;

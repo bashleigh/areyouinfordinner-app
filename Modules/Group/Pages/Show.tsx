@@ -2,7 +2,7 @@ import React from 'react';
 import {
     View,
     Text,
-    touchableOpacity,
+    TouchableOpacity,
 } from 'react-native';
 import {
     connect,
@@ -14,21 +14,24 @@ import {
 @connect()
 export default class extends React.Component <{}> {
     static navigationOptions = {
-        title: 'Update group',
+        title: 'Show group',
     };
     static selectedGroup = 'dunno yet';
 
-    render = () => (
+    render = () => {
+      console.log('props', this.props);
+      return (
         <View>
-            <Header navigation={this.props.navigation}/>
-            <Text>{selectedGroup}</Text>
+          <Header navigation={this.props.navigation}/>
+          <Text>{this.selectedGroup}</Text>
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('group-QRcode')}>
-                <Text>Show QR code</Text>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('groupQRcode')}>
+            <Text>Show QR code</Text>
+          </TouchableOpacity>
 
-            {/*TODO list all responses for current day */}
+          {/*TODO list all responses for current day */}
 
         </View>
-    );
+      );
+    }
 }

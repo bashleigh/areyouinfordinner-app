@@ -110,6 +110,12 @@ function* register() {
 			loading: true,
 		});
 
+		yield effects.put({
+			type: config.actions.register.errors,
+			errors: null,
+			title: null,
+		});
+
 		const params = yield effects.select((state) => state.form.register.values);
 
 		const response = yield effects.call(Api, {
@@ -133,7 +139,7 @@ function* register() {
 
 			yield effects.put({
 				type: config.actions.register.errors,
-				errors: response.body.message.errors,
+				errors: response.body.message.error,
 				title: response.body.message.message,
 			});
 
@@ -151,6 +157,14 @@ function* register() {
 // basically wipe jwt and me
 function* unauthenticated() {
 	while(true) {
+		const root = yield effects.take(config.actions.unauthenticated);
 
+		console.log('deauth fired');
+
+		yield effects.put({
+			type: config.actions.unauth,
+		});
+
+	//	TODO set global errors
 	}
 }

@@ -25,7 +25,7 @@ export default class extends React.Component <{}> {
         <View>
             <Header navigation={this.props.navigation}/>
             <Text>Create new group</Text>
-            <Form handleSubmit={this.onSubmit}/>
+            <Form onSubmit={this.onSubmit}/>
         </View>
     );
 

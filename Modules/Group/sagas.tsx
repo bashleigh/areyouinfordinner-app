@@ -1,7 +1,8 @@
 import {
-	effect,
+	effects,
 } from 'redux-saga';
 import Api from './../../System/Api';
+import config from './config';
 
 export default function* () {
 	yield effects.all([
@@ -53,19 +54,35 @@ function* create() {
 			loading: true,
 		});
 
-		const params = yield effects.select((state) => state.form.group);
+		const params = yield effects.select((state) => state.form.group.values);
+		const token = yield effects.select((state) => state.auth.JWT);
 
 		const response = yield effects.call(Api, {
 			...config.api.groups.store,
+			headers: {
+				...config.api.groups.store.headers,
+				Authorization: config.api.groups.store.headers.Authorization.replace('{token}', token.access_token),
+			},
 			body: params,
 		});
 
-		console.log('response', response);
-
 		if (response.status === 201) {
-			//TODO add to groups array
+			yield effects.put({
+				type: config.actions.group.push,
+				group: response.body,
+			});
+
+			root.navigation.navigate('groupShow', {
+				id: response.body.id,
+			});
+
+		} else if (response.status === 401 || response.status === 403) {
+			//TODO unauthenticated response
+			yield effects.put({
+				type: 'auth-deauth',
+			});
 		} else {
-			//TODO log errors and display
+			//TODO error handling
 		}
 
 		yield effects.put({

@@ -36,6 +36,9 @@ export default {
 		groupQRCode: {
 			screen: Group.Pages.QRCode,
 		},
+		groupJoin: {
+			screen: Group.Pages.Join,
+		},
 	},
 	appOptions: {
 		initialRouteName: 'Home',

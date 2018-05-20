@@ -32,6 +32,10 @@ export default class extends React.Component<{}> {
 					<Text>Create</Text>
 				</TouchableOpacity>
 
+				<TouchableOpacity onPress={() => this.props.navigation.navigate('groupJoin')}>
+					<Text>Join a group</Text>
+				</TouchableOpacity>
+
 				{/*TODO pagination*/}
 				{Object.keys(this.props.group.groups).map((id) => (
 					<View key={id}>

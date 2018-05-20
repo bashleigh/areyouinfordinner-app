@@ -10,20 +10,35 @@ import {
     Header,
 } from './../../../Components';
 
-@connect()
+@connect(
+  (state) => state,
+)
 export default class extends React.Component <{}> {
     static navigationOptions = {
-        title: 'Update group',
+        title: 'QR Code',
     };
-    static selectedGroup = 'dunno yet';
 
-    render = () => (
-        <View>
-            <Header navigation={this.props.navigation}/>
-            <Text>{selectedGroup}</Text>
+    render = () => {
+        const params = this.props.navigation.state.params;
 
-            {/*TODO show the QR code */}
+        if (!params.hasOwnProperty('id') || !this.props.group.groups.hasOwnProperty(params.id)) {
+            return (
+              <View>
+                  <Text>Group not found!</Text>
+              </View>
+            );
+        }
 
-        </View>
-    );
+        const group = this.props.group.groups[params.id];
+
+        return (
+          <View>
+              <Header navigation={this.props.navigation}/>
+              <Text>{group.name}</Text>
+
+              {/*TODO show the QR code */}
+
+          </View>
+        );
+    }
 }

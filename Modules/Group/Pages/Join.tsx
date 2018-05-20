@@ -9,7 +9,9 @@ import {
 	Header,
 } from './../../../Components';
 
-@connect()
+@connect(
+	(state) => state,
+)
 export default class extends React.Component <{}> {
 	render = () => (
 		<View>

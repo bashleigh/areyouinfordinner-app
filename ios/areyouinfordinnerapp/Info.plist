@@ -52,5 +52,15 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+    <string>Are you in for dinner would like to use your camera init</string>
+
+    <!-- Include this only if you are planning to use the camera roll -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Are you in for dinner would like to view your nudes</string>
+
+    <!-- Include this only if you are planning to use the microphone for video recording -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Are you in for dinner wants to listen in to your conversations init</string>
 </dict>
 </plist>

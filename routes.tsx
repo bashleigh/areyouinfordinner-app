@@ -33,6 +33,9 @@ export default {
 		groupShow: {
 			screen: Group.Pages.Show,
 		},
+		groupQRCode: {
+			screen: Group.Pages.QRCode,
+		},
 	},
 	appOptions: {
 		initialRouteName: 'Home',

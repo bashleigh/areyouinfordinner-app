@@ -37,7 +37,7 @@ export default class extends React.Component <{}> {
           <Header navigation={this.props.navigation}/>
           <Text>{group.name}</Text>
 
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('groupQRcode', {
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('groupQRCode', {
             id: params.id,
           })}>
             <Text>Show QR code</Text>

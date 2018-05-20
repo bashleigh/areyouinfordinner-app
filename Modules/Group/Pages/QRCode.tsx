@@ -9,6 +9,7 @@ import {
 import {
     Header,
 } from './../../../Components';
+import QRCode from 'react-native-qrcode';
 
 @connect(
   (state) => state,
@@ -33,11 +34,15 @@ export default class extends React.Component <{}> {
 
         return (
           <View>
-              <Header navigation={this.props.navigation}/>
-              <Text>{group.name}</Text>
+            <Header navigation={this.props.navigation}/>
+            <Text>{group.name}</Text>
 
-              {/*TODO show the QR code */}
-
+            <QRCode
+              value={group.code}
+              size={200}
+              bgColor='red'
+              fgColor='white'
+            />
           </View>
         );
     }

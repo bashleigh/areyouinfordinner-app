@@ -41,10 +41,14 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSAppTransportSecurity</key>
-	<!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>areyouinfordinner.local</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -53,14 +57,10 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-    <string>Are you in for dinner would like to use your camera init</string>
-
-    <!-- Include this only if you are planning to use the camera roll -->
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Are you in for dinner would like to view your nudes</string>
-
-    <!-- Include this only if you are planning to use the microphone for video recording -->
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Are you in for dinner wants to listen in to your conversations init</string>
+	<string>Are you in for dinner would like to use your camera init</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Are you in for dinner would like to view your nudes</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Are you in for dinner wants to listen in to your conversations init</string>
 </dict>
 </plist>

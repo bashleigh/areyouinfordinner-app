@@ -11,18 +11,11 @@ _links to apple and android apps_
 
 ### Development 
 
-Areyouinfordinner uses expo as most react-native packages from .55 do. To start run `yarn start` which starts the expo server. From there you have options: 
+Run 
 
 ```bash
- › Press a to open Android device or emulator, or i to open iOS emulator.
- › Press s to send the app URL to your phone number or email address
- › Press q to display QR code.
- › Press r to restart packager, or R to restart packager and clear cache.
- › Press d to toggle development mode. (current mode: development)
+yarn start && yarn ios
 ```
-
-You will also be presented with a QR code to scan with an expo app on the same network.
-
-Alternatively you can run `yarn ios` to start an iphone emulator or `yarn android` to start an android emulator. 
+For IOS development
 
 > Make sure that when running in development mode that the areyouinfordinner API is running on port 3000.

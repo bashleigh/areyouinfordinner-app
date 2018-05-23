@@ -22,6 +22,8 @@ export default class extends React.Component<{}> {
 	};
 
 	componentWillMount = () => {
+		//TODO work out how to request the correct page etc
+		// Possibly a condition on the props this.props.groups.pagination.total === null
 		this.props.navigation.dispatch({
 			type: config.actions.group.paginate,
 		});

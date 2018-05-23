@@ -34,11 +34,20 @@ function* paginate() {
 
 		if (response.status === 200) {
 
-			//TODO Add the pagination results for calculating whether to request again.
+			yield effects.put({
+				type: config.actions.group.setPaginate,
+				total: response.body.total,
+				pages: response.body.pages,
+				count: response.body.count,
+			});
 
 			yield effects.put({
 				type: config.actions.group.push,
 				groups: response.body.items,
+			});
+		} else if (response.status === 401) {
+			yield effects.put({
+				type: 'auth-deauth',
 			});
 		} else {
 			//TODO log errors and display
@@ -82,7 +91,7 @@ function* create() {
 				id: response.body.id,
 			});
 
-		} else if (response.status === 401 || response.status === 403) {
+		} else if (response.status === 401) {
 			//TODO unauthenticated response
 			yield effects.put({
 				type: 'auth-deauth',

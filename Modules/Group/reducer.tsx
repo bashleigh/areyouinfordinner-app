@@ -18,6 +18,15 @@ export default (state = config.state, action = {}) => {
 				},
 			};
 			break;
+		case config.actions.group.setPaginate:
+			return {
+				...state,
+				pagination: {
+					...state.pagination,
+					...action,
+				},
+			};
+			break;
 		default:
 			return state;
 	}

@@ -1,8 +1,12 @@
 export default {
 	state: {
-		currentPage: 0,
+		pagination: {
+			total: null,
+			count: null,
+			pages: 0,
+			loading: false,
+		},
 		groups: {},
-		pagination: {},
 		loading: false,
 	},
 	api: {

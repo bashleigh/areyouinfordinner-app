@@ -10,7 +10,7 @@ import {
 import {
 	Header,
 } from './../../../Components';
-
+import config from './../config';
 
 @connect(
 	(state) => state,
@@ -21,8 +21,13 @@ export default class extends React.Component<{}> {
 		title: 'Group',
 	};
 
+	componentWillMount = () => {
+		this.props.navigation.dispatch({
+			type: config.actions.group.paginate,
+		});
+	};
+
 	render = () => {
-		console.log('state', this.props);
 		return (
 			<View>
 				<Header navigation={this.props.navigation}/>

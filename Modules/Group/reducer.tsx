@@ -9,11 +9,12 @@ export default (state = config.state, action = {}) => {
 			};
 			break;
 		case config.actions.group.push:
+			const groups = sortGroups(action.groups);
 			return {
 				...state,
 				groups: {
 					...state.groups,
-					[action.group.id]: action.group,
+					...groups,
 				},
 			};
 			break;
@@ -21,3 +22,9 @@ export default (state = config.state, action = {}) => {
 			return state;
 	}
 }
+
+const sortGroups = (groups: Array) => {
+	const groupObjects = {};
+	groups.map((arr) => groupObjects[arr.id] = arr);
+	return groupObjects;
+};

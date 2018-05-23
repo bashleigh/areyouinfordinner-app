@@ -2,12 +2,14 @@ export default {
 	state: {
 		currentPage: 0,
 		groups: {},
+		pagination: {},
+		loading: false,
 	},
 	api: {
 		groups: {
 			index: {
 				method: 'get',
-				path: '/group',
+				path: '/group/',
 				headers: {
 					'Accept': 'application/json',
 					'Authorization': 'Bearer {token}',
@@ -50,6 +52,7 @@ export default {
 			loading: 'group-loading',
 			push: 'group-push',
 			paginate: 'group-paginate',
+			setPaginate: 'group-paginate-options',
 		},
 	},
 };

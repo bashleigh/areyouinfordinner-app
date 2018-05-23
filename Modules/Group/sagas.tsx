@@ -21,19 +21,25 @@ function* paginate() {
 			loading: true,
 		});
 
-		const page = yield effects.select((state) => state.group.page);
+		const token = yield effects.select((state) => state.auth.JWT);
 
 		const response = yield effects.call(Api, {
 			...config.api.groups.index,
-			path: config.api.groups.index.path + '?page=' + page,
+			path: config.api.groups.index.path,
+			headers: {
+				...config.api.groups.index.headers,
+				Authorization: config.api.groups.index.headers.Authorization.replace('{token}', token.access_token),
+			},
 		});
 
-		console.log('response', response);
-
 		if (response.status === 200) {
-			console.log('Success');
 
-			//TODO add to groups array
+			//TODO Add the pagination results for calculating whether to request again.
+
+			yield effects.put({
+				type: config.actions.group.push,
+				groups: response.body.items,
+			});
 		} else {
 			//TODO log errors and display
 		}
@@ -69,7 +75,7 @@ function* create() {
 		if (response.status === 201) {
 			yield effects.put({
 				type: config.actions.group.push,
-				group: response.body,
+				groups: [response.body],
 			});
 
 			root.navigation.navigate('groupShow', {

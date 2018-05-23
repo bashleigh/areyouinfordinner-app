@@ -25,6 +25,7 @@ export default class extends React.Component <{}> {
       if (!params.hasOwnProperty('id') || !this.props.group.groups.hasOwnProperty(params.id)) {
         return (
           <View>
+            <Header navigation={this.props.navigation}/>
             <Text>Group not found!</Text>
           </View>
         );

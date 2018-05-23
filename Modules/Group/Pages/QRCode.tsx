@@ -41,7 +41,7 @@ export default class extends React.Component <{}> {
             <QRCode
               value={group.code}
               size={200}
-              bgColor='red'
+              bgColor='black'
               fgColor='white'
             />
           </View>

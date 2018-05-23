@@ -27,6 +27,12 @@ import {
   addNavigationHelpers
 } from 'react-navigation';
 import codePush from 'react-native-code-push';
+import {
+  PersistGate,
+} from 'redux-persist/integration/react';
+import {
+  persistStore,
+} from 'redux-persist';
 
 const styles = StyleSheet.create({
   container: {
@@ -64,6 +70,8 @@ const store = Store(reducers, {}, sagas);
 
 const addListener = createReduxBoundAddListener("root");
 
+let persistor = persistStore(store);
+
 @connect(
   (state) => ({
     nav: state.nav,
@@ -82,6 +90,8 @@ class App extends React.Component<{}> {
 @codePush
 export default () => (
   <Provider store={store}>
-    <App/>
+    {/*<PersistGate loading={null} persistor={persistor}>*/}
+      <App/>
+    {/*</PersistGate>*/}
   </Provider>
 );

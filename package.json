@@ -60,6 +60,7 @@
     "react-navigation-redux-helpers": "^1.0.5",
     "react-redux": "^5.0.7",
     "redux-form": "^7.1.2",
+    "redux-persist": "^5.9.1",
     "redux-saga": "^0.16.0",
     "redux-thunk": "^2.2.0"
   }

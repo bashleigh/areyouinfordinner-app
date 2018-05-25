@@ -20,15 +20,20 @@ export default class extends React.Component<{}> {
 		title: 'Login',
 	};
 
-	render = () => (
-		<View>
-			{(this.props.auth.login.loading) ? <Text>Loading</Text> : null}
-			<Form onSubmit={this.onSubmit}/>
-			<TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
-				<Text>Register</Text>
-			</TouchableOpacity>
-		</View>
-	);
+	render = () => {
+		return (
+			<View>
+				{(this.props.auth.login.loading) ? <Text>Loading</Text> : null}
+				{this.props.auth.login.errors.length >= 1 ? this.props.auth.login.errors.map((error, i) => (
+					<Text key={i}>{error}</Text>
+				)) : null}
+				<Form onSubmit={this.onSubmit}/>
+				<TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
+					<Text>Register</Text>
+				</TouchableOpacity>
+			</View>
+		);
+	};
 
 	onSubmit = (values) => {
 		this.props.navigation.dispatch({

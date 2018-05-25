@@ -47,7 +47,6 @@ export default (state = config.state, action = {}) => {
 			};
 			break;
 		case config.actions.register.errors:
-			console.log('action', action);
 			return {
 				...state,
 				register: {
@@ -61,7 +60,7 @@ export default (state = config.state, action = {}) => {
 				...state,
 				login: {
 					...state.login,
-					errors: action,
+					errors: action.errors,
 				},
 			};
 			break;

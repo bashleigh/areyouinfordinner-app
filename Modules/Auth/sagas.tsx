@@ -30,8 +30,6 @@ function* login() {
 		});
 
 		if (response.status === 201) {
-			console.log('logged in');
-
 			yield effects.put({
 				type: config.actions.login.setJWT,
 				JWT: response.body,
@@ -43,16 +41,9 @@ function* login() {
 
 			yield effects.put({
 				type: config.actions.login.errors,
-				errors: response.body.message.errors,
-			});
-
-			yield effects.put({
-				type: config.actions.login.errors,
-				errors: response.errors,
+				errors: ['Invalid credentials'],
 			});
 		}
-
-		//TODO stuff to make login work
 
 		yield effects.put({
 			type: config.actions.login.loading,

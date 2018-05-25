@@ -22,6 +22,11 @@ function* login() {
 			loading: true,
 		});
 
+		yield effects.put({
+			type: config.actions.login.errors,
+			errors: [],
+		});
+
 		const params = yield effects.select((state) => state.form.login.values);
 
 		const response = yield effects.call(Api, {
@@ -72,7 +77,6 @@ function* me() {
 		});
 
 		if (response.status === 201) {
-			console.log('Valid login credentials ');
 
 			yield effects.put({
 				type: config.actions.me.set,
@@ -80,8 +84,6 @@ function* me() {
 			});
 
 		} else {
-			console.log('Invalid login credentials');
-
 			yield effects.put({
 				type: config.actions.me.unauthenticated,
 			});
@@ -105,8 +107,7 @@ function* register() {
 
 		yield effects.put({
 			type: config.actions.register.errors,
-			errors: null,
-			title: null,
+			errors: [],
 		});
 
 		const params = yield effects.select((state) => state.form.register.values);
@@ -116,11 +117,7 @@ function* register() {
 			body: params,
 		});
 
-		console.log('response', response);
-
 		if (response.status === 201) {
-			console.log('registered successfully');
-
 			yield effects.put({
 				type: config.actions.login.setJWT,
 				JWT: response.body.token,
@@ -130,13 +127,16 @@ function* register() {
 
 		} else {
 
+			const body = yield effects.call([response, 'json']);
+
+			const error = (typeof(body) === 'object') ? body.message.error : 'No errors included in response';
+
+			if (error === 'duplicate entry') error = 'Email address already registered';
+
 			yield effects.put({
 				type: config.actions.register.errors,
-				errors: response.body.message.error,
-				title: response.body.message.message,
+				errors: [error],
 			});
-
-			console.log('registered failed');
 		}
 
 		yield effects.put({

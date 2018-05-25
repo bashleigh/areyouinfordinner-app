@@ -19,14 +19,16 @@ export default class extends React.Component<{}> {
 		title: 'Register',
 	};
 
-	render = () => {
-		return (
-			<View>
-				{(this.props.auth.register.loading) ? <Text>Loading</Text> : null}
-				<Form onSubmit={this.onSubmit}/>
-			</View>
-		);
-	};
+	render = () => (
+		<View>
+			{(this.props.auth.register.loading) ? <Text>Loading</Text> : null}
+			{this.props.auth.register.errors.length >= 1 ? this.props.auth.register.errors.map((error, i) => (
+				<Text key={i}>{error}</Text>
+			)) : null}
+			<Form onSubmit={this.onSubmit}/>
+		</View>
+	);
+
 
 	onSubmit = (values) => {
 		this.props.navigation.dispatch({

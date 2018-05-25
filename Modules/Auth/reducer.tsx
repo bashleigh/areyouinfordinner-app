@@ -23,7 +23,7 @@ export default (state = config.state, action = {}) => {
 			return {
 				...state,
 				register: {
-					...state.login,
+					...state.register,
 					loading: action.loading,
 				},
 			};

@@ -14,7 +14,7 @@ export default {
 				password: null,
 				confirmPassword: null,
 			},
-			errors: {},
+			errors: [],
 		},
 		login: {
 			loading: false,
@@ -22,7 +22,7 @@ export default {
 				email: null,
 				password: null,
 			},
-			errors: {},
+			errors: [],
 		},
 		logout: {
 			loading: false,

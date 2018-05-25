@@ -126,6 +126,10 @@ function* update() {
 
 		if (response.status === 202) {
 			//TODO update groups to array
+		} else if(response.status === 401) {
+			yield effects.put({
+				type: 'auth-deauth',
+			});
 		} else {
 			//TODO log errors and display
 		}
@@ -153,6 +157,10 @@ function* destroy() {
 
 		if (response.status === 200) {
 			//TODO remove from groups array
+		} else if (response.status === 401) {
+			yield effects.put({
+				type: 'auth-deauth',
+			});
 		} else {
 			//TODO log errors
 		}
@@ -180,6 +188,10 @@ function* show() {
 
 		if (response.status === 200) {
 			//TODO update in group
+		} else if (response.status === 401) {
+			yield effects.put({
+				type: 'auth-deauth',
+			});
 		} else {
 			//TODO log errors
 		}

@@ -20,10 +20,9 @@ export default class extends React.Component<{}> {
 	};
 
 	render = () => {
-		console.log('errors from reducer', this.props.auth.register.errors);
 		return (
 			<View>
-				<Text>{this.props.auth.register.loading ? 'loading' : 'not loading'}</Text>
+				{(this.props.auth.register.loading) ? <Text>Loading</Text> : null}
 				<Form onSubmit={this.onSubmit}/>
 			</View>
 		);

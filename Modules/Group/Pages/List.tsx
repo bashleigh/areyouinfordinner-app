@@ -44,6 +44,8 @@ export default class extends React.Component<{}> {
 				</TouchableOpacity>
 
 				{/*TODO pagination*/}
+
+				{(this.props.group.pagination.loading) ? <Text>Loading</Text> : null}
 				{Object.keys(this.props.group.groups).map((id) => (
 					<View key={id}>
 						<Text>{this.props.group.groups[id].name}</Text>

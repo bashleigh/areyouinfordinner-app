@@ -22,7 +22,7 @@ export default class extends React.Component<{}> {
 
 	render = () => (
 		<View>
-			<Text>{this.props.auth.login.loading ? 'loading' : 'not loading'}</Text>
+			{(this.props.auth.login.loading) ? <Text>Loading</Text> : null}
 			<Form onSubmit={this.onSubmit}/>
 			<TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
 				<Text>Register</Text>

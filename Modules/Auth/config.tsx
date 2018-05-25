@@ -24,6 +24,9 @@ export default {
 			},
 			errors: {},
 		},
+		logout: {
+			loading: false,
+		},
 	},
 	api: {
 		login: {
@@ -70,7 +73,11 @@ export default {
 			set: 'auth-me-set',
 			unauthenticated: 'auth-me-unauthenticated',
 		},
+		logout: {
+			request: 'auth-logout-request',
+			loading: 'auth-logout-loading',
+		},
+		unauthenticated: 'auth-deauth',
+		unauth: 'auth-unauth',
 	},
-	unauthenticated: 'auth-deauth',
-	unauth: 'auth-unauth',
 };

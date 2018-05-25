@@ -39,6 +39,9 @@ export default {
 		groupJoin: {
 			screen: Group.Pages.Join,
 		},
+		logout: {
+			screen: Auth.Pages.Logout,
+		},
 	},
 	appOptions: {
 		initialRouteName: 'Home',

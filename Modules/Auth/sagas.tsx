@@ -8,6 +8,8 @@ export default function* sagas() {
 	yield effects.all([
 		effects.fork(login),
 		effects.fork(register),
+		effects.fork(logout),
+		effects.fork(unauthenticated),
 	]);
 }
 
@@ -166,5 +168,27 @@ function* unauthenticated() {
 		});
 
 	//	TODO set global errors
+	}
+}
+
+function* logout() {
+	while(true) {
+		const root = yield effects.take(config.actions.logout.request);
+
+		yield effects.put({
+			type: config.actions.logout.loading,
+			loading: true,
+		});
+
+		yield effects.put({
+			type: config.actions.unauth,
+		});
+
+		root.navigation.navigate('Login');
+
+		yield effects.put({
+			type: config.actions.logout.loading,
+			loading: false,
+		});
 	}
 }

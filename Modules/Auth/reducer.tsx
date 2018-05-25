@@ -65,6 +65,15 @@ export default (state = config.state, action = {}) => {
 				},
 			};
 			break;
+		case config.actions.logout.loading:
+			return {
+				...state,
+				logout: {
+					...state.logout,
+					loading: action.loading,
+				},
+			};
+			break;
 		case config.actions.unauth:
 			return {
 				...state,

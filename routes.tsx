@@ -25,19 +25,7 @@ export default {
 			screen: example,
 		},
 		group: {
-			screen: Group.Pages.List,
-		},
-		groupCreate: {
-			screen: Group.Pages.Create,
-		},
-		groupShow: {
-			screen: Group.Pages.Show,
-		},
-		groupQRCode: {
-			screen: Group.Pages.QRCode,
-		},
-		groupJoin: {
-			screen: Group.Pages.Join,
+			screen: Group.stack,
 		},
 		logout: {
 			screen: Auth.Pages.Logout,
